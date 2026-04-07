@@ -20,6 +20,7 @@
       msg: "{{ install_output }}"
   - name: "mongodb service start"
     ansible.builtin.service:
+      become: true
       name: mongod
       enabled: yes
       state: started
