@@ -3,4 +3,4 @@
   connection: local
   tasks:
     - ansible.builtin.debug:
-      msg: "{{ hostvars['localhost'].mongodb_ip_sf }}"
+        msg: "{{ hostvars['localhost'].mongodb_ip_sf }}"
