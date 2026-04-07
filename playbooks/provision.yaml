@@ -13,7 +13,11 @@
     loop: "{{ INST_NAMES }}"
   - name: "Print outputs for understanding"
     ansible.builtin.debug:
-      msg: "{{ ec2_output.results | map(attribute='item') | join('\n') }}"
+      msg: |
+        {{ ec2_output.results[0][item]}}
+        {{ ec2_output.results[1][item]}}
+        {{ ec2_output.results[2][item]}}
+  #     msg: "{{ ec2_output.results | map(attribute='item') | join('\n') }}"
   # - name: "Tagging EC2 created Instances for dynamic inventory"
   #   amazon.aws.ec2_tag:
   #     region: eu-east-1
