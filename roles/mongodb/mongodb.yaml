@@ -22,7 +22,7 @@
     ansible.builtin.service:
       name: mongod
       enabled: yes
-      start: started
+      state: started
   - name: "Make Changes in mongodb configuration"
     ansible.builtin.lineinfile:
       path: /etc/mongod.conf
