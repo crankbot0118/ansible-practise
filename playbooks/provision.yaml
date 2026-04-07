@@ -38,4 +38,4 @@
           {% else %}
           unknown
           {% endif %}
-    loop: "{{ instance_map.keys() }}"    
+    loop: "{{ instance_map.keys() }}"
