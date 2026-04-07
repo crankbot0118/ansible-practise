@@ -14,7 +14,7 @@
   - name: "nginx service start"
     become: true
     ansible.builtin.service:  
-      name: catalogue
+      name: nginx
       enabled: yes
       state: started
       daemon-reload: yes
