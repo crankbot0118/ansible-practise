@@ -26,13 +26,13 @@
   - name: "Tagging EC2 Instances"
     amazon.aws.ec2_tag:
       region: us-east-1
-      resource: "{{ item.value }}"
+      resource: "{{ item.value[1] }}"
       state: present
       tags:
         Role: |
           {% if "mongodb" in item.key %}
           mg
-          {% elif "catalogue" in {{ item.value[0] }} %}
+          {% elif "catalogue" in item.key %}
           cl
           {% elif "frontend" in item.key %}
           fe
