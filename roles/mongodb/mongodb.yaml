@@ -5,6 +5,7 @@
     ansible.builtin.debug:
       msg: "Hello"
   - name: "Creating repo for MongoDB"
+    become: true
     ansible.builtin.copy:
       src: "~/ansible-practise/roles/mongodb/mongo.repo"
       dest: /etc/yum.repos.d/mongo.repo
