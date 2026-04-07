@@ -1,0 +1,15 @@
+- name: "Installing and configuring Redis6"
+  hosts: "role__re_"
+  connection: ssh
+  tasks:
+  - name: "Installing Redis6"
+    become: true
+    ansible.builtin.package:
+      name: Redis6
+      state: present
+  # - name: "Changing Redis Configuration"
+  #   become: true
+  #   replace: 
+  #     path: /etc/redis6/redis6.conf
+  #     regexp: 
+  #     replace:
