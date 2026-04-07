@@ -1,6 +1,5 @@
 - name: "Installing Mysql into the database"
   hosts: role___db_
-  connection: ssh
   tasks:
   - name: "echo hi"
     ansible.builtin.debug:
