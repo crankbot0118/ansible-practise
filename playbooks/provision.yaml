@@ -20,4 +20,4 @@
       instance_map: "{{ dict(instance_names | zip(instance_ids)) }}"
   - name: "Print outputs for understanding"
     ansible.builtin.debug:
-      msg: "{{ instance_ids }}"
+      msg: "{{ instance_map }}"
