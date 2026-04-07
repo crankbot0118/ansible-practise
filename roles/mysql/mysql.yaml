@@ -1,5 +1,5 @@
 - name: "Installing Mysql into the database"
-  hosts: tag_Role_db
+  hosts: role___db_
   connection: ssh
   tasks:
   - name: "echo hi"
