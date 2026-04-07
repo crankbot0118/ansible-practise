@@ -15,13 +15,14 @@
     set_fact:
       instance_names: "{{ ec2_output.results | map(attribute='item') | list }}"
       instance_ids: "{{ ec2_output.results | map(attribute='instance_ids') | map('first') | list }}"
+      private_ip_address: "{{ ec2_output.results | map(attribute='instances') | map('first') | map(attribute='private_ip_address') | list }}"
   - name: "Mapping Details into dict"
     set_fact:
-      instance_map: "{{ dict(instance_ids | zip(instance_names)) }}"
+      instance_map: "{{ dict(instance_ids | zip(instance_names | zip(private_ip_address))) }}"
   - name: "Print outputs for understanding"
     ansible.builtin.debug:
-      msg: "{{ item }}"
-    loop: "{{ instance_map.keys() }}" 
+      msg: "{{ item.value[0] }}"
+    loop: "{{ instance_map | dict2items }}"
   - name: "Tagging EC2 Instances"
     amazon.aws.ec2_tag:
       region: us-east-1
@@ -29,13 +30,29 @@
       state: present
       tags:
         Role: |
-          {% if "database" in instance_map[item] %}
+          {% if "mongodb" in item.value[0] %}
           db
-          {% elif "frontend" in instance_map[item] %}
+          {% elif "catalogue" in item.value[0] %}
           fe
-          {% elif "backend" in instance_map[item] %}
+          {% elif "frontend" item.value[0] %}
           be
+          {% elif "redis" item.value[0] %}
+          re
+          {% elif "user" item.value[0] %}
+          us
+          {% elif "cart" item.value[0] %}
+          ca
+          {% elif "mysql" item.value[0] %}
+          my
+          {% elif "shipping" item.value[0] %}
+          shi
+          {% elif "rabbitmq" item.value[0] %}
+          rb
+          {% elif "payment" item.value[0] %}
+          py
+          {% elif "dispatch" item.value[0] %}
+          di
           {% else %}
           unknown
           {% endif %}
-    loop: "{{ instance_map.keys() }}"
+    loop: "{{ instance_map | dict2items }}"
