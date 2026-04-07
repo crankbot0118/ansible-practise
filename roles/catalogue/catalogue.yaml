@@ -1,7 +1,5 @@
 - name: "Installing NodeJS into the database"
   hosts: "role__cl_"
-  vars_files:
-  - ../../all.yaml
   tasks:
   - name: "Install NodeJS"
     become: true
