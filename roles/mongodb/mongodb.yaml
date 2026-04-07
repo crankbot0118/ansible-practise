@@ -24,10 +24,9 @@
       name: mongod
       enabled: yes
       state: started
-  - name: "Make Changes in mongodb configuration"
+  - name: Replace bindIp line exactly
     become: true
-    ansible.builtin.lineinfile:
+    replace:
       path: /etc/mongod.conf
-      regexp: '^\s*bindIp:\s*127\.0\.0\.1'
-      line: |
-          bindIp: 0.0.0.q
+      regexp: '^\s*bindIp:\s*127\.0\.0\.1\s+# Enter 0\.0\.0\.0,:: to bind to all IPv4 and IPv6 addresses or, alternatively, use the net\.bindIpAll setting\.'
+      replace: '  bindIp: 0.0.0.0  # Enter 0.0.0.0,:: to bind to all IPv4 and IPv6 addresses or, alternatively, use the net.bindIpAll setting.'
