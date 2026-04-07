@@ -30,27 +30,27 @@
       state: present
       tags:
         Role: |
-          {% if "mongodb" in item.key %}
+          {% if "mongodb" in item.value[0] %}
           mg
-          {% elif "catalogue" in item.key %}
+          {% elif "catalogue" in item.value[0] %}
           cl
-          {% elif "frontend" in item.key %}
+          {% elif "frontend" in item.value[0] %}
           fe
-          {% elif "redis" in item.key %}
+          {% elif "redis" in item.value[0] %}
           re
-          {% elif "user" in item.key %}
+          {% elif "user" in item.value[0] %}
           us
-          {% elif "cart" in item.key %}
+          {% elif "cart" in item.value[0] %}
           ca
-          {% elif "mysql" in item.key %}
+          {% elif "mysql" in item.value[0] %}
           my
-          {% elif "shipping" in item.key %}
+          {% elif "shipping" in item.value[0] %}
           shi
-          {% elif "rabbitmq" in item.key %}
+          {% elif "rabbitmq" in item.value[0] %}
           rb
-          {% elif "payment" in item.key %}
+          {% elif "payment" in item.value[0] %}
           py
-          {% elif "dispatch" in item.key %}
+          {% elif "dispatch" in item.value[0] %}
           di
           {% else %}
           unknown
