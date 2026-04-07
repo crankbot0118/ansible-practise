@@ -28,7 +28,7 @@
       resource: "{{ item }}"
       state: present
       tags:
-        Role: >-
+        Role: |
           {% if "database" in instance_map[item] %}
           db
           {% elif "frontend" in instance_map[item] %}
