@@ -37,3 +37,9 @@
       remote_src: yes
       src: "/tmp/catalogue.zip"
       dest: "/app"
+  - name: "Installing NodeJS Dependencies"
+    become: true
+    community.general.npm:
+      path: "/app"
+      executable: "/usr/bin/npm"
+      state: present
