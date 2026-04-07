@@ -1,4 +1,4 @@
-- name: "Installing MariaDB into the database"
+- name: "Installing MongoDB into the database"
   hosts: role___db_
   tasks:
   - name: "echo hi"
