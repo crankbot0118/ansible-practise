@@ -1,5 +1,5 @@
 - name: "Installing MongoDB into the database"
-  hosts: role___db_
+  hosts: "role__mg_"
   tasks:
   - name: "echo hi"
     ansible.builtin.debug:

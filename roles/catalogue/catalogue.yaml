@@ -1,5 +1,5 @@
 - name: "Installing NodeJS into the database"
-  hosts: "role__mg_"
+  hosts: "role__cl_"
   tasks:
   - name: "Install NodeJS"
     become: true
