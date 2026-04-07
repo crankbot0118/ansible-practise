@@ -56,6 +56,6 @@
           unknown
           {% endif %}
     loop: "{{ instance_map | dict2items }}"
-  # - name: "Assign Service IPs"
-  #   set_fact:
-  #     "{{ item.}}"
+  - name: "Assign Service IPs"
+    set_fact:
+      "{{ item.value[0] }}_ip": "{{ item.value[1] }}" 
