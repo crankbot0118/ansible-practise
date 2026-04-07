@@ -31,8 +31,8 @@
     ansible.builtin.get_url:
       url: "https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip"
       dest: "/tmp/catalogue.zip"
-      remote_src: yes
   - name: "Unzip the Scripts"
     ansible.builtin.unarchive:
+      remote_src: yes
       src: "/tmp/catalogue.zip"
       dest: "/app"
