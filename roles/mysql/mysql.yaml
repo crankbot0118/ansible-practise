@@ -8,7 +8,7 @@
     ansible.builtin.package:
       name: mariadb-server
       state: installed
-    register: install-output
+    register: install_output
   - name: "Status check"
     ansible.builtin.debug:
-      msg: "{{ install-output }}"
+      msg: "{{ install_output }}"
