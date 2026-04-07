@@ -23,39 +23,39 @@
     ansible.builtin.debug:
       msg: "{{ item.key }}"
     loop: "{{ instance_map | dict2items }}"
-  # - name: "Tagging EC2 Instances"
-  #   amazon.aws.ec2_tag:
-  #     region: us-east-1
-  #     resource: "{{ item.key }}"
-  #     state: present
-  #     tags:
-  #       Role: |
-  #         {% if "mongodb" in item.key %}
-  #         mg
-  #         {% elif "catalogue" in item.key %}
-  #         cl
-  #         {% elif "frontend" in item.key %}
-  #         fe
-  #         {% elif "redis" in item.key %}
-  #         re
-  #         {% elif "user" in item.key %}
-  #         us
-  #         {% elif "cart" in item.key %}
-  #         ca
-  #         {% elif "mysql" in item.key %}
-  #         my
-  #         {% elif "shipping" in item.key %}
-  #         shi
-  #         {% elif "rabbitmq" in item.key %}
-  #         rb
-  #         {% elif "payment" in item.key %}
-  #         py
-  #         {% elif "dispatch" in item.key %}
-  #         di
-  #         {% else %}
-  #         unknown
-  #         {% endif %}
-  #   loop: "{{ instance_map | dict2items }}"
-  # # - name: "Assign Service IPs"
-  # #   set_fact:
-  # #     "{{ item.}}"
+  - name: "Tagging EC2 Instances"
+    amazon.aws.ec2_tag:
+      region: us-east-1
+      resource: "{{ item.key }}"
+      state: present
+      tags:
+        Role: |
+          {% if "mongodb" in item.key %}
+          mg
+          {% elif "catalogue" in item.key %}
+          cl
+          {% elif "frontend" in item.key %}
+          fe
+          {% elif "redis" in item.key %}
+          re
+          {% elif "user" in item.key %}
+          us
+          {% elif "cart" in item.key %}
+          ca
+          {% elif "mysql" in item.key %}
+          my
+          {% elif "shipping" in item.key %}
+          shi
+          {% elif "rabbitmq" in item.key %}
+          rb
+          {% elif "payment" in item.key %}
+          py
+          {% elif "dispatch" in item.key %}
+          di
+          {% else %}
+          unknown
+          {% endif %}
+    loop: "{{ instance_map | dict2items }}"
+  # - name: "Assign Service IPs"
+  #   set_fact:
+  #     "{{ item.}}"
