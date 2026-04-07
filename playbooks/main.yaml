@@ -2,7 +2,7 @@
   hosts: local
   connection: local
   tasks:
-  - import_playbook: playbooks/provision.yaml
-  - import_playbook: roles/mongodb/mongodb.yaml
-  - import_playbook: roles/catalogue/catalogue.yaml
-  - import_playbook: roles/frontend/frontend.yaml
+  - ansible.builtin.import_playbook: playbooks/provision.yaml
+  - ansible.builtin.import_playbook: roles/mongodb/mongodb.yaml
+  - ansible.builtin.import_playbook: roles/catalogue/catalogue.yaml
+  - ansible.builtin.import_playbook: roles/frontend/frontend.yaml
