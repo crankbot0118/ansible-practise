@@ -56,7 +56,11 @@
           unknown
           {% endif %}
     loop: "{{ instance_map | dict2items }}"
-  - name: "Assign Service IPs"
+  - name: Assign Service IPs
     set_fact:
       "{{ item.value[0] }}_ip_sf": "{{ item.value[1] }}"
+    loop: "{{ instance_map | dict2items }}"
+  - name: "Print IP's"
+    ansible.builtin.debug:
+      msg: "{{ lookup('vars', item.value[0] + '_ip_sf') }}"
     loop: "{{ instance_map | dict2items }}"
