@@ -13,7 +13,4 @@
     loop: "{{ INST_NAMES }}"
   - name: "Print outputs for understanding"
     ansible.builtin.debug:
-      msg: |
-        {% for i in ec2_output.results %}
-        {{ i.item }}
-        {% endfor %}
+      msg: "{{ ec2_output.results | map(attribute='item') | join('\n') }}"
