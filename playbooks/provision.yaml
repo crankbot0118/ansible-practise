@@ -23,39 +23,39 @@
     ansible.builtin.debug:
       msg: "{{ item.value[0] }}"
     loop: "{{ instance_map | dict2items }}"
+  - name: "Tagging EC2 Instances"
+    amazon.aws.ec2_tag:
+      region: us-east-1
+      resource: "{{ item }}"
+      state: present
+      tags:
+        Role: |
+          {% if "mongodb" in item.value[0] %}
+          db
+          {% elif "catalogue" in item.value[0] %}
+          fe
+          {% elif "frontend" item.value[0] %}
+          be
+          {% elif "redis" item.value[0] %}
+          re
+          {% elif "user" item.value[0] %}
+          us
+          {% elif "cart" item.value[0] %}
+          ca
+          {% elif "mysql" item.value[0] %}
+          my
+          {% elif "shipping" item.value[0] %}
+          shi
+          {% elif "rabbitmq" item.value[0] %}
+          rb
+          {% elif "payment" item.value[0] %}
+          py
+          {% elif "dispatch" item.value[0] %}
+          di
+          {% else %}
+          unknown
+          {% endif %}
+    loop: "{{ instance_map | dict2items }}"
   # - name: "Assign Service IPs"
   #   set_fact:
   #     "{{ item.}}"
-  # - name: "Tagging EC2 Instances"
-  #   amazon.aws.ec2_tag:
-  #     region: us-east-1
-  #     resource: "{{ item }}"
-  #     state: present
-  #     tags:
-  #       Role: |
-  #         {% if "mongodb" in item.value[0] %}
-  #         db
-  #         {% elif "catalogue" in item.value[0] %}
-  #         fe
-  #         {% elif "frontend" item.value[0] %}
-  #         be
-  #         {% elif "redis" item.value[0] %}
-  #         re
-  #         {% elif "user" item.value[0] %}
-  #         us
-  #         {% elif "cart" item.value[0] %}
-  #         ca
-  #         {% elif "mysql" item.value[0] %}
-  #         my
-  #         {% elif "shipping" item.value[0] %}
-  #         shi
-  #         {% elif "rabbitmq" item.value[0] %}
-  #         rb
-  #         {% elif "payment" item.value[0] %}
-  #         py
-  #         {% elif "dispatch" item.value[0] %}
-  #         di
-  #         {% else %}
-  #         unknown
-  #         {% endif %}
-  #   loop: "{{ instance_map | dict2items }}"
