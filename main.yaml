@@ -1,4 +1,4 @@
-- import_playbook: playbooks/provision.yaml
+- import_playbook: provision.yaml
 - import_playbook: roles/mongodb/mongodb.yaml
 - import_playbook: roles/catalogue/catalogue.yaml
 - import_playbook: roles/frontend/frontend.yaml
