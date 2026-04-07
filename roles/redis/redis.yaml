@@ -5,7 +5,7 @@
   - name: "Installing Redis6"
     become: true
     ansible.builtin.package:
-      name: Redis6
+      name: redis6
       state: present
   # - name: "Changing Redis Configuration"
   #   become: true
