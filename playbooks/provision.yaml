@@ -9,7 +9,7 @@
       instance_type: "{{ INST_TYPE }}"
       security_group: "{{ SG }}"
       image_id: "{{ IMG_ID }}"
-      register: "ec2_output"
+    register: "ec2_output"
     loop: "{{ INST_NAMES }}"
   - name: "Print outputs for understanding"
     ansible.builtin.debug:
