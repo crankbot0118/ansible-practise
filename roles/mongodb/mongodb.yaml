@@ -4,10 +4,14 @@
   - name: "echo hi"
     ansible.builtin.debug:
       msg: "Hello"
-  - name: "Install MariaDB"
+  - name: "Creating repo for MongoDB"
+    ansible.builtin.copy:
+      src: roles/mongodb/mongo.repo
+      dest: /etc/yum.repos.d/mongo.repo
+  - name: "Install MongoDB"
     become: true
     ansible.builtin.package:
-      name: mariadb-server
+      name: mongodb-org
       state: present
     register: install_output
   - name: "Status check"
