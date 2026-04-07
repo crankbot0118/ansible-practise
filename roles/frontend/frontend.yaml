@@ -1,0 +1,20 @@
+- name: "Installing and Configuring Nginx"
+  hosts: "role__fe_"
+  connection: ssh
+  tasks:
+  - name: "Install Nginx"
+    become: true
+    ansible.builtin.package:
+      name: nginx
+      state: present
+  - name: "Delete Boilerplate code of nginx"
+    ansible.builtin.file:
+    path: "/usr/share/nginx/html/*"
+    state: absent
+  - name: "nginx service start"
+    become: true
+    ansible.builtin.service:  
+      name: catalogue
+      enabled: yes
+      state: started
+      daemon-reload: yes

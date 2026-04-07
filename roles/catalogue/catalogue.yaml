@@ -1,18 +1,11 @@
 - name: "Installing NodeJS into the database"
   hosts: "role__be_"
   tasks:
-  - name: "echo hi"
-    ansible.builtin.debug:
-      msg: "Hello"
   - name: "Install NodeJS"
     become: true
     ansible.builtin.package:
       name: nodejs
       state: present
-    register: install_output
-  - name: "Status check"
-    ansible.builtin.debug:
-      msg: "{{ install_output['results'] }}"
   - name: "Add User roboshop"
     become: true
     ansible.builtin.user:
