@@ -29,11 +29,11 @@
       state: present
       tags:
         Role: >-
-          {% if "database" in instance[item] %}
+          {% if "database" in instance_map[item] %}
           db
-          {% elif "frontend" in instance[item] %}
+          {% elif "frontend" in instance_map[item] %}
           fe
-          {% elif "backend" in instance[item] %}
+          {% elif "backend" in instance_map[item] %}
           be
           {% else %}
           unknown
