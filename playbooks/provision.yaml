@@ -13,4 +13,7 @@
     loop: "{{ INST_NAMES }}"
   - name: "Print outputs for understanding"
     ansible.builtin.debug:
-      msg: "{{ ec2_output.results[0]['item'] }}"
+      msg: |
+        ec2_output.results[0]['item']
+        ec2_output.results[1]['item']
+        ec2_output.results[2]['item']
