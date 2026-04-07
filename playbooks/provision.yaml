@@ -10,13 +10,14 @@
       security_group: "{{ SG }}"
       image_id: "{{ IMG_ID }}"
     register: "ec2_output"
+    loop: "{{ INST_NAMES }}"
+  - name: "Extract Instance Details"
     set_fact:
       instance_ids: "{{ ec2_output.results | map(attribute='instance_ids') | flatten }}"
       instance_names: "{{ ec2_output.results | map(attribute='item') | flatten }}"
-    loop: "{{ INST_NAMES }}"
   - name: "Print outputs for understanding"
     ansible.builtin.debug:
-      msg: "{{ instance_names}}"
+      msg: "{{ instance_names }}"
   # - name: "Tagging EC2 created Instances for dynamic inventory"
   #   amazon.aws.ec2_tag:
   #     region: eu-east-1
