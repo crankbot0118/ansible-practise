@@ -3,6 +3,5 @@
   connection: ssh
   tasks:
   - name: "echo hi"
-    tasks:
-      ansible.builtin.debug:
-        msg: "Hello"
+    ansible.builtin.debug:
+      msg: "Hello"
