@@ -1,21 +1,24 @@
 - name: "Installing and configuring Redis6"
   hosts: "role__re_"
   connection: ssh
+  become: true
   tasks:
   - name: "Installing Redis6"
-    become: true
     ansible.builtin.package:
       name: redis6
       state: present
   - name: "Changing Redis Configuration"
-    become: true
     replace: 
       path: /etc/redis6/redis6.conf
       regexp: ^bind\s+127\.0\.0\.1\s+-::1$
       replace: "bind 0.0.0.0 -::1"
   - name: "Change protected-mode"
-    become: true
     replace:
       path: /etc/redis6/redis6.conf
       regexp: '^protected-mode\s+yes'
       replace: 'protected-mode no'
+  - name: "Redis Service Enable and Start"
+    ansible.builtin.service:
+      name: redis6
+      enabled: true
+      state: present
