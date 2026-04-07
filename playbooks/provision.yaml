@@ -20,7 +20,7 @@
       instance_map: "{{ dict(instance_ids | zip(instance_names)) }}"
   - name: "Print outputs for understanding"
     ansible.builtin.debug:
-      msg: "{{ instance_map[item] }}"
+      msg: "{{ item }}"
     loop: "{{ instance_map.keys() }}" 
   # - name: "Tagging EC2 Instances"
   #   amazon.aws.ec2_tag:
