@@ -21,12 +21,12 @@
       instance_map: "{{ dict(instance_ids | zip(instance_names | zip(private_ip_address))) }}"
   - name: "Print outputs for understanding"
     ansible.builtin.debug:
-      msg: "{{ item }}"
+      msg: "{{ item.value }}"
     loop: "{{ instance_map | dict2items }}"
   - name: "Tagging EC2 Instances"
     amazon.aws.ec2_tag:
       region: us-east-1
-      resource: "{{ item }}"
+      resource: "{{ item.value }}"
       state: present
       tags:
         Role: |
