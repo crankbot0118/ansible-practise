@@ -17,7 +17,24 @@
       instance_ids: "{{ ec2_output.results | map(attribute='instance_ids') | map('first') | list }}"
   - name: "Mapping Details into dict"
     set_fact:
-      instance_map: "{{ dict(instance_names | zip(instance_ids)) }}"
+      instance_map: "{{ dict(instance_ids | zip(instance_names)) }}"
   - name: "Print outputs for understanding"
     ansible.builtin.debug:
       msg: "{{ instance_map }}"
+  - name: "Tagging EC2 Instances"
+    amazon.aws.ec2_tag:
+      region: us-east-1
+      resource: "{{ instance_map[item] }}"
+      state: present
+      tags:
+        Role: >-
+          {% if "database" in item %}
+          db
+          {% elif "frontend" in item %}
+          fe
+          {% elif "backend" in item %}
+          be
+          {% else %}
+          unknown
+          {% endif %}
+    loop: "{{ instance_map.keys() }}"    
