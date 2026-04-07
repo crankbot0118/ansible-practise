@@ -33,5 +33,5 @@
       dest: "/tmp/catalogue.zip"
   - name: "Unzip the Scripts"
     ansible.builtin.unarchive:
-      src: "/tmp/catalogue-v3.zip"
+      src: "/tmp/catalogue.zip"
       dest: "/app"
