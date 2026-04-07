@@ -9,8 +9,6 @@
       instance_type: "{{ INST_TYPE }}"
       security_group: "{{ SG }}"
       image_id: "{{ IMG_ID }}"
-      network_interface:
-        assign_public_ip: true
       register: "ec2_output"
     loop: "{{ INST_NAMES }}"
   - name: "Print outputs for understanding"
