@@ -1,6 +1,4 @@
 - name: "Installing MongoDB into the database"
-  vars_files:
-    - provisioning.yaml
   hosts: "role__mg_"
   tasks:
   - name: "echo hi"
