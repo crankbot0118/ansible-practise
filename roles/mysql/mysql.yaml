@@ -5,6 +5,7 @@
     ansible.builtin.debug:
       msg: "Hello"
   - name: "Install MariaDB"
+    become: true
     ansible.builtin.package:
       name: mariadb-server
       state: installed
