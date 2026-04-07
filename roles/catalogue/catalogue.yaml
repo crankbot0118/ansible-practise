@@ -17,12 +17,12 @@
     become: true
     ansible.builtin.user:
       name: roboshop
-      become: true
       comment: "roboshop system user"
       shell: /sbin/nologin
       home: /app
       system: true
   - name: "Create a directory /app"
+    become: true
     ansible.builtin.file:
       path: /app
       state: directory
