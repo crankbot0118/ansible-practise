@@ -60,3 +60,7 @@
     set_fact:
       "{{ item.value[0] }}_ip_sf": "{{ item.value[1] }}"
     loop: "{{ instance_map | dict2items }}"
+  - name: "List ALL IP's"
+    ansible.builtin.debug:
+      msg: |
+        "{{ mongodb_ip }}"
