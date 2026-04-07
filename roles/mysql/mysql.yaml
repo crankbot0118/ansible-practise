@@ -1,6 +1,14 @@
-- name: "Installing Mysql into the database"
+- name: "Installing MariaDB into the database"
   hosts: role___db_
   tasks:
   - name: "echo hi"
     ansible.builtin.debug:
       msg: "Hello"
+  - name: "Install MariaDB"
+    ansible.builtin.package:
+      name: mariadb-server
+      state: installed
+    register: install-output
+  - name: "Status check"
+    ansible.builtin.debug:
+    msg: "{{ install-output }}"
