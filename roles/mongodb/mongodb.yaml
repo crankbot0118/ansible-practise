@@ -6,7 +6,7 @@
       msg: "Hello"
   - name: "Creating repo for MongoDB"
     ansible.builtin.copy:
-      src: "~/inventory/roles/mongodb/mongo.repo"
+      src: "~/roles/mongodb/mongo.repo"
       dest: /etc/yum.repos.d/mongo.repo
   - name: "Install MongoDB"
     become: true
