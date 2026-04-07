@@ -1,0 +1,18 @@
+- name: "Provisioning the EC2 Instances and relevant tagging"
+  hosts: local
+  connection: local
+  tasks:
+  - name: "Provisioning the EC2 Instances"
+    amazon.aws.ec2_instance:
+      name: "{{ item }}"
+      key_name: "{{ SSH_KEY }}"
+      instance_type: "{{ INST_TYPE }}"
+      security_group: "{{ SG }}"
+      image_id: "{{ IMG_ID }}"
+      network_interface:
+        assign_public_ip: true
+      register: "ec2_output"
+    loop: "{{ INST_NAMES }}"
+  - name: "Print outputs for understanding"
+    ansible.builtin.debug:
+      msg: "{{ ec2_output.results }}
