@@ -4,5 +4,6 @@
   vars_files:
   - provision.yaml
   tasks:
-  - ansible.builtin.debug:
-    msg: "{{ mongodb_ip }}"
+  - name: "Print"
+    ansible.builtin.debug:
+      msg: "{{ mongodb_ip }}"
