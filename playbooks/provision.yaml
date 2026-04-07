@@ -30,27 +30,27 @@
       state: present
       tags:
         Role: |
-          {% if "mongodb" in item.value[0] %}
+          {% if "mongodb" in {{ item.value[0] }}  %}
           db
-          {% elif "catalogue" in item.value[0] %}
+          {% elif "catalogue" in {{ item.value[0] }} %}
           fe
-          {% elif "frontend" item.value[0] %}
+          {% elif "frontend" {{ item.value[0] }} %}
           be
-          {% elif "redis" item.value[0] %}
+          {% elif "redis" {{ item.value[0] }} %}
           re
-          {% elif "user" item.value[0] %}
+          {% elif "user" {{ item.value[0] }} %}
           us
-          {% elif "cart" item.value[0] %}
+          {% elif "cart" {{ item.value[0] }} %}
           ca
-          {% elif "mysql" item.value[0] %}
+          {% elif "mysql" {{ item.value[0] }} %}
           my
-          {% elif "shipping" item.value[0] %}
+          {% elif "shipping" {{ item.value[0] }} %}
           shi
-          {% elif "rabbitmq" item.value[0] %}
+          {% elif "rabbitmq" {{ item.value[0] }} %}
           rb
-          {% elif "payment" item.value[0] %}
+          {% elif "payment" {{ item.value[0] }} %}
           py
-          {% elif "dispatch" item.value[0] %}
+          {% elif "dispatch" {{ item.value[0] }} %}
           di
           {% else %}
           unknown
