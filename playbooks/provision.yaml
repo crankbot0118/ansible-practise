@@ -10,17 +10,19 @@
       security_group: "{{ SG }}"
       image_id: "{{ IMG_ID }}"
     register: "ec2_output"
+    set_fact:
+      instance_ids: "{{ ec2_output.results | map(attribute='instance_ids') | flatten }}"
+      instance_names: "{{ ec2_output.results | map(attribute='item') | flatten }}"
     loop: "{{ INST_NAMES }}"
   - name: "Print outputs for understanding"
     ansible.builtin.debug:
-      # msg: |
-      #   {{ ec2_output.results[0]['item']}}
-      #   {{ ec2_output.results[1]['item']}}
-      #   {{ ec2_output.results[2]['item']}}
-      # msg: "{{ ec2_output.results | map(attribute='item') | join('\n') }}"
-      msg: "{{ ec2_output.results | map(attribute='instance_ids') | flatten }}"
+      msg: "{{ instance_names}}"
   # - name: "Tagging EC2 created Instances for dynamic inventory"
   #   amazon.aws.ec2_tag:
   #     region: eu-east-1
   #     resource: "{{ item }}"
-  #     loop: "{{ }}
+  #     state: present
+  #     tags:
+  #       Role: >-
+  #       {% if "database" in }
+  #   loop: "{{ ec2_output.results | map(attribute='instance_ids') | flatten }}"
