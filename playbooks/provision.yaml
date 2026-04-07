@@ -18,12 +18,19 @@
   - name: "Print outputs for understanding"
     ansible.builtin.debug:
       msg: "{{ instance_ids }}"
-  # - name: "Tagging EC2 created Instances for dynamic inventory"
-  #   amazon.aws.ec2_tag:
-  #     region: eu-east-1
-  #     resource: "{{ item }}"
-  #     state: present
-  #     tags:
-  #       Role: >-
-  #       {% if "database" in }
-  #   loop: "{{ ec2_output.results | map(attribute='instance_ids') | flatten }}"
+  - name: "Tagging EC2 created Instances for dynamic inventory"
+    amazon.aws.ec2_tag:
+      region: eu-east-1
+      resource: "{{ item }}"
+      state: present
+      tags:
+        Role: >-
+          {% if "database" in item %}
+          "db"
+          {% elif "frontend" in item %}
+          "fe"
+          {% elif "backend" in item %}
+          "be"
+          {% elif %}
+      loop: "{{ instance_names }}"
+    loop: "{{ instance_ids }}"
