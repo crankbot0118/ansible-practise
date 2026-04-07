@@ -18,15 +18,15 @@
   - name: "Status check"
     ansible.builtin.debug:
       msg: "{{ install_output }}"
-  - name: "mongodb service start"
-    become: true
-    ansible.builtin.service:  
-      name: mongod
-      enabled: yes
-      state: started
   - name: Replace bindIp line exactly
     become: true
     replace:
       path: /etc/mongod.conf
       regexp: '^\s*bindIp:\s*127\.0\.0\.1\s+# Enter 0\.0\.0\.0,:: to bind to all IPv4 and IPv6 addresses or, alternatively, use the net\.bindIpAll setting\.'
       replace: '  bindIp: 0.0.0.0  # Enter 0.0.0.0,:: to bind to all IPv4 and IPv6 addresses or, alternatively, use the net.bindIpAll setting.'
+  - name: "mongodb service start"
+    become: true
+    ansible.builtin.service:  
+      name: mongod
+      enabled: yes
+      state: started
