@@ -11,4 +11,4 @@
     register: install-output
   - name: "Status check"
     ansible.builtin.debug:
-    msg: "{{ install-output }}"
+      msg: "{{ install-output }}"
