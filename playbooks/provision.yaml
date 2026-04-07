@@ -22,20 +22,20 @@
     ansible.builtin.debug:
       msg: "{{ item }}"
     loop: "{{ instance_map.keys() }}" 
-  # - name: "Tagging EC2 Instances"
-  #   amazon.aws.ec2_tag:
-  #     region: us-east-1
-  #     resource: "{{ instance_map[item] }}"
-  #     state: present
-  #     tags:
-  #       Role: >-
-  #         {% if "database" in item %}
-  #         db
-  #         {% elif "frontend" in item %}
-  #         fe
-  #         {% elif "backend" in item %}
-  #         be
-  #         {% else %}
-  #         unknown
-  #         {% endif %}
-  #   loop: "{{ instance_map.keys() }}"    
+  - name: "Tagging EC2 Instances"
+    amazon.aws.ec2_tag:
+      region: us-east-1
+      resource: "{{ item }}"
+      state: present
+      tags:
+        Role: >-
+          {% if "database" in instance[item] %}
+          db
+          {% elif "frontend" in instance[item]em %}
+          fe
+          {% elif "backend" in instance[item] %}
+          be
+          {% else %}
+          unknown
+          {% endif %}
+    loop: "{{ instance_map.keys() }}"    
