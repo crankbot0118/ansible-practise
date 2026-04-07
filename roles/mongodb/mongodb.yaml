@@ -19,8 +19,8 @@
     ansible.builtin.debug:
       msg: "{{ install_output }}"
   - name: "mongodb service start"
-    ansible.builtin.service:
-      become: true
+    become: true
+    ansible.builtin.service:  
       name: mongod
       enabled: yes
       state: started
