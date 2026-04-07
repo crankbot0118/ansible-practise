@@ -15,7 +15,7 @@
     set_fact:
       instance_names: "{{ ec2_output.results | map(attribute='item') | list }}"
       instance_ids: "{{ ec2_output.results | map(attribute='instance_ids') | map('first') | list }}"
-      # instance_map: "{{ dict(instance_names | zip(instance_ids)) }}"
+      instance_map: "{{ dict(instance_names | zip(instance_ids)) }}"
   - name: "Print outputs for understanding"
     ansible.builtin.debug:
       msg: "{{ instance_ids }}"
