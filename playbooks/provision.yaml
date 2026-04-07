@@ -26,11 +26,11 @@
       tags:
         Role: >-
           {% if "database" in item %}
-          "db"
+          db
           {% elif "frontend" in item %}
-          "fe"
+          fe
           {% elif "backend" in item %}
-          "be"
+          be
           {% elif %}
       loop: "{{ instance_names }}"
     loop: "{{ instance_ids }}"
