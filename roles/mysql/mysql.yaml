@@ -7,8 +7,8 @@
   - name: "Install MariaDB"
     become: true
     ansible.builtin.package:
-      name: mariadb114-server
-      state: installed
+      name: mariadb-server
+      state: present
     register: install_output
   - name: "Status check"
     ansible.builtin.debug:
